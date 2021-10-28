@@ -1,14 +1,14 @@
 <template>
   <div class="page1">
     <p>STEP1</p>
-    <h1>お客様の情報を入力してください</h1>
+    <p>お客様の情報を入力してください</p>
     <p>性別</p>
     <input type="radio" name="sex" value="man">男性
     <input type="radio" name="sex" value="woman">女性
     <p>生年月日</p>
     <form>
       <select v-model="year" @change="getDays">
-        <option v-for="n in 100" v-bind:key="n">{{(n + 1921) | era}}</option>
+        <option v-for="n in 100" v-bind:value="n + 1921" v-bind:key="n">{{(n + 1921) | era}}</option>
       </select>年
       <select v-model="month" @change="getDays">
         <option v-for="n in 12" v-bind:key="n">{{n}}</option>
@@ -25,7 +25,7 @@
 export default {
   data() {
     return {
-      year: 2021,
+      year: 2000,
       month: 1,
       day: 1,
       daysMax: ''
@@ -37,7 +37,7 @@ export default {
   methods: {
     getDays: function() {
       this.daysMax = new Date(this.year, this.month, 0).getDate();
-    },
+    }
   },
   filters: {
     era(y) {
@@ -56,6 +56,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>
